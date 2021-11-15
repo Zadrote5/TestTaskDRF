@@ -11,7 +11,7 @@ from ..models import Survey, Question, Passing
 SUCCESS_TOKEN = 'a437b15e363ad6cd401a0a87ce0e371710c6'
 
 
-# Метод авторизации
+# Проверка авторизации
 def check_auth(token):
     if token == SUCCESS_TOKEN:
         return True
@@ -151,7 +151,7 @@ class SurveysApiView(ListAPIView):
     def get_survey(request):
         survey = Survey.objects.all()
         if request.GET.get("survey_id"):
-            survey = Passing.objects.get(pk=request.GET.get("passing_id"))
+            survey = Survey.objects.get(pk=request.GET.get("survey_id"))
         if request.GET.get("survey_id"):
             survey = Passing.objects.get(pk=request.GET.get("user_id"))
         serializer = SurveySerializer(survey)
